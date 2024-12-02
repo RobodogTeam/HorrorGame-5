@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Player : MonoBehaviour
 {
     public static Player instance;
     private List<Task> tasks = new();
+    private FirstPersonController controller;
 
     private void Awake()
     {
         instance = this;
+        controller = GetComponent<FirstPersonController>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,5 +44,15 @@ public class Player : MonoBehaviour
     public void FinishTask(Task task)
     {
         tasks.Remove(task);
+    }
+
+    public void TurnOffMoves()
+    {
+        controller.TurnOffMoves();
+    }
+
+    public void TurnOnMoves()
+    {
+        controller.TurnOnMoves();
     }
 }

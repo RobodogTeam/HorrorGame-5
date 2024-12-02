@@ -41,6 +41,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private bool CanMove = true;
 
         // Use this for initialization
         private void Start()
@@ -207,6 +208,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
 
+            if (!CanMove)
+            {
+                horizontal = 0;
+                vertical = 0;
+            }
+
             bool waswalking = m_IsWalking;
 
 #if !MOBILE_INPUT
@@ -254,6 +261,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+        }
+
+        public void TurnOffMoves()
+        {
+            CanMove = false;
+        }
+
+        public void TurnOnMoves()
+        {
+            CanMove = true;
         }
     }
 }

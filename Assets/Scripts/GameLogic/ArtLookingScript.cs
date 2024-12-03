@@ -17,13 +17,13 @@ public class ArtLookingScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (trigger.isTriggered && Input.GetKeyDown(KeyCode.E))
+        if (trigger.IsTriggered && Input.GetKeyDown(KeyCode.E))
         {
             uiImage.texture = image;
             uiImage.gameObject.SetActive(!uiImage.gameObject.activeSelf);
         }
 
-        if (!trigger.isTriggered && uiImage.gameObject.activeSelf && uiImage.texture == image)
+        if (!trigger.IsTriggered && uiImage.gameObject.activeSelf && uiImage.texture == image)
         {
             uiImage.gameObject.SetActive(false);
         }

@@ -29,7 +29,7 @@ public class TaskNPCScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (taskCollider.isTriggered && Input.GetKeyDown(KeyCode.E))
+        if (taskCollider.IsTriggered && Input.GetKeyDown(KeyCode.E))
         {
             if (!isGiveTask)
             {

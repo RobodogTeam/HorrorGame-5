@@ -18,7 +18,7 @@ public class ParkourStandardScript : MonoBehaviour
 
     private void Update()
     {
-        if (trigger.isTriggered)
+        if (trigger.IsTriggered)
         {
             player.transform.position = startPoint.position;
         }

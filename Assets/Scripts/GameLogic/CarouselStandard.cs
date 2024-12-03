@@ -25,7 +25,7 @@ public class CarouselStandard : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (actionCollider.isTriggered && Input.GetKeyDown(KeyCode.F))
+        if (actionCollider.IsTriggered && Input.GetKeyDown(KeyCode.F))
         {
             StartGame();
         }

@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class ColliderScript : MonoBehaviour
 {
-    public bool isTriggered { get; private set; }
+    public bool IsTriggered { get; private set; }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            isTriggered = true;
+            IsTriggered = true;
         }
     }
 
@@ -16,7 +16,7 @@ public class ColliderScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isTriggered = false;
+            IsTriggered = false;
         }
     }
 }

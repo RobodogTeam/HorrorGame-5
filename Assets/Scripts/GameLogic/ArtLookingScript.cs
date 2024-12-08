@@ -8,11 +8,11 @@ public class ArtLookingScript : MonoBehaviour
     [SerializeField]
     private RawImage uiImage;
 
-    private ColliderScript trigger;
+    private TriggerScript trigger;
 
     void Start()
     {
-        trigger = GetComponent<ColliderScript>();
+        trigger = GetComponent<TriggerScript>();
     }
 
     private void FixedUpdate()

@@ -4,13 +4,13 @@ public class MetroStandardScript : MonoBehaviour
 {
     [SerializeField] 
     private MinecartStandardScript minecart;
-    private ColliderScript trigger;
+    private TriggerScript trigger;
     
 
     void Start()
     {
         minecart.metro = this;
-        trigger = GetComponentInChildren<ColliderScript>();
+        trigger = GetComponentInChildren<TriggerScript>();
     }
 
     void Update()
@@ -24,6 +24,8 @@ public class MetroStandardScript : MonoBehaviour
     public void StartGame()
     {
         minecart.StartMove();
+        Player.instance.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
+        Player.instance.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Discrete;
     }
 
     public void EndGame()

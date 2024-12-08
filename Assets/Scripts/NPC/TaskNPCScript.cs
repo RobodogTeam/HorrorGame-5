@@ -6,7 +6,7 @@ public class TaskNPCScript : MonoBehaviour
     private Player player;
     private Task task;
     private bool isGiveTask;
-    private ColliderScript taskCollider;
+    private TriggerScript taskCollider;
 
     [SerializeField]
     private string taskName;
@@ -23,7 +23,7 @@ public class TaskNPCScript : MonoBehaviour
     {
         isGiveTask = false;
         player = Player.instance;
-        taskCollider = GetComponentInChildren<ColliderScript>();
+        taskCollider = GetComponentInChildren<TriggerScript>();
         task = new Task(taskName, taskDescription, taskFinishText, taskObject, taskFinishNPC);
     }
 

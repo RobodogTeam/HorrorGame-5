@@ -9,13 +9,13 @@ public class CarouselStandard : MonoBehaviour
     public Transform MoveObjectTransform;
 
     private float totalRotation = 0;
-    private ColliderScript actionCollider;
+    private TriggerScript actionCollider;
     private bool isStart;
     private Player player;
 
     private void Awake()
     {
-        actionCollider = GetComponentInChildren<ColliderScript>();
+        actionCollider = GetComponentInChildren<TriggerScript>();
     }
 
     private void Start()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ColliderScript : MonoBehaviour
+public class TriggerScript : MonoBehaviour
 {
     public bool IsTriggered { get; private set; }
 
@@ -18,5 +18,10 @@ public class ColliderScript : MonoBehaviour
         {
             IsTriggered = false;
         }
+    }
+
+    public void SetTriggered(bool value)
+    {
+        IsTriggered = value;
     }
 }

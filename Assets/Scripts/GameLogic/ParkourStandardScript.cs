@@ -7,12 +7,12 @@ public class ParkourStandardScript : MonoBehaviour
     [SerializeField]
     private Transform startPoint;
 
-    private ColliderScript trigger;
+    private TriggerScript trigger;
     private Player player;
 
     void Start()
     {
-        trigger = GetComponentInChildren<ColliderScript>();
+        trigger = GetComponentInChildren<TriggerScript>();
         player = Player.instance;
     }
 
@@ -21,6 +21,8 @@ public class ParkourStandardScript : MonoBehaviour
         if (trigger.IsTriggered)
         {
             player.transform.position = startPoint.position;
+            player.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
+            player.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         }
     }
 }

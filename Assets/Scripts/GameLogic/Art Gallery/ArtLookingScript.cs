@@ -9,6 +9,7 @@ public class ArtLookingScript : MonoBehaviour
     private RawImage uiImage;
 
     private TriggerScript trigger;
+    private bool isLookingThisArt;
 
     void Start()
     {
@@ -21,11 +22,13 @@ public class ArtLookingScript : MonoBehaviour
         {
             uiImage.texture = image;
             uiImage.gameObject.SetActive(!uiImage.gameObject.activeSelf);
+            isLookingThisArt = uiImage.gameObject.activeSelf;
         }
 
-        if (!trigger.IsTriggered && uiImage.gameObject.activeSelf && uiImage.texture == image)
+        if (!trigger.IsTriggered && uiImage.gameObject.activeSelf && isLookingThisArt)
         {
             uiImage.gameObject.SetActive(false);
+            isLookingThisArt = false;
         }
     }
 }

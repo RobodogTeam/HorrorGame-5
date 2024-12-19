@@ -28,9 +28,8 @@ public class ParkourHorrorScript : MonoBehaviour
     {
         if (deathtTigger.IsTriggered)
         {
-            player.transform.position = startPoint.position;
-            player.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
-            player.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            player.SetRestartPoint(startPoint);
+            player.Death();
         }
     }
 }

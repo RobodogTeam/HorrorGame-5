@@ -1,12 +1,16 @@
 using System.Collections.Generic;
+using UnityEditor.Build.Pipeline.Interfaces;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class Player : MonoBehaviour
 {
+    public int HP;
     public static Player instance;
-    private List<Task> tasks = new();
     private FirstPersonController controller;
+    private Transform restartPoint;
+    private float restartTimer = 2;
+    private bool isDeath;
 
     private void Awake()
     {
@@ -28,22 +32,15 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-    }
-
-    public void StartTask(Task task)
-    {
-        tasks.Add(task);
-        Debug.Log("Кол-во заданий у игрока:" + tasks.Count);
-        foreach (var t in tasks)
+        if (isDeath)
         {
-            Debug.Log(t.Name);
+            restartTimer += Time.deltaTime;
         }
     }
 
-    public void FinishTask(Task task)
+    public void SetRestartPoint(Transform point)
     {
-        tasks.Remove(task);
+        restartPoint = point;
     }
 
     public void TurnOffMoves()
@@ -54,5 +51,22 @@ public class Player : MonoBehaviour
     public void TurnOnMoves()
     {
         controller.TurnOnMoves();
+    }
+
+    public void Death()
+    {
+        isDeath = true;
+        if (restartTimer < 1)
+            return;
+
+        restartTimer = 0;
+        GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
+        GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        transform.position = restartPoint.position;
+        HP -= 1;
+        Debug.Log($"Осталось хп: {HP}");
+
+        GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
+        GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Discrete;
     }
 }

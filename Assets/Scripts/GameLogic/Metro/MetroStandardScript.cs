@@ -4,13 +4,13 @@ public class MetroStandardScript : MonoBehaviour
 {
     [SerializeField] 
     private MinecartStandardScript minecart;
+    [SerializeField]
     private TriggerScript trigger;
     
 
     void Start()
     {
         minecart.metro = this;
-        trigger = GetComponentInChildren<TriggerScript>();
     }
 
     void Update()
@@ -30,6 +30,9 @@ public class MetroStandardScript : MonoBehaviour
 
     public void EndGame()
     {
-
+        minecart.EndMove();
+        Player.instance.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
+        Player.instance.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        Player.instance.transform.position = minecart.transform.position;
     }
 }

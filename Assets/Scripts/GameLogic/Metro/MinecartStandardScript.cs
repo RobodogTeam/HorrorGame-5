@@ -27,10 +27,8 @@ public class MinecartStandardScript : MonoBehaviour
             player.transform.position = seatPlace.position;
             if (Vector3.Distance(transform.position, finishPoint.position) < 3)
             {
-                isStart = false;
                 player.TurnOnMoves();
                 metro.EndGame();
-                body.linearVelocity = Vector3.zero;
             }
         }
     }
@@ -39,5 +37,12 @@ public class MinecartStandardScript : MonoBehaviour
     {
         isStart = true;
         player.TurnOffMoves();
+    }
+
+    public void EndMove()
+    {
+        isStart = false;
+        body.linearVelocity = Vector3.zero;
+        player.TurnOnMoves();
     }
 }

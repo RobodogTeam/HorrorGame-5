@@ -5,19 +5,15 @@ public class PanicRoomStandardScript : MonoBehaviour
 {
     [SerializeField]
     protected Wardrobe wardrobe;
+    [SerializeField]
+    protected TriggerScript trigger;
 
     protected bool isStart;
-    protected TriggerScript trigger;
     protected bool isEnd;
-
-    void Start()
-    {
-        trigger = GetComponentInChildren<TriggerScript>();
-    }
 
     void Update()
     {
-        if (trigger.IsTriggered && !wardrobe.IsOpen && !isEnd)
+        if (trigger.IsTriggered && !isEnd)
         {
             StartGame();
         }

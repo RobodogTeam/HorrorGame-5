@@ -14,12 +14,13 @@ public class Wardrobe : MonoBehaviour
     {
         if (isOpening)
         {
-            if (leftDoor.rotation.eulerAngles.y < 123)
+            Debug.Log(2);
+            if (leftDoor.localRotation.eulerAngles.y < 123)
             {
-                float currentAngle = leftDoor.rotation.eulerAngles.y;
-                leftDoor.rotation =
+                float currentAngle = leftDoor.localRotation.eulerAngles.y;
+                leftDoor.localRotation =
                     Quaternion.AngleAxis(currentAngle + (Time.deltaTime * DegreesPerSecond), Vector3.up);
-                rightDoor.rotation =
+                rightDoor.localRotation =
                     Quaternion.AngleAxis(-(currentAngle + (Time.deltaTime * DegreesPerSecond)), Vector3.up);
             }
             else

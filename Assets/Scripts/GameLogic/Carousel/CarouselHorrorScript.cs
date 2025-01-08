@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CarouselHorrorScript : MonoBehaviour
@@ -5,7 +6,7 @@ public class CarouselHorrorScript : MonoBehaviour
     public int RotatesCount = 2;
     public float DegreesPerSecond = 45f;
     public float RotationDegreesAmount = 90f;
-    public Transform MoveObject, RestartPosition;
+    public Transform RestartPosition;
 
     [SerializeField]
     private CarouselHorrorMove horrorMove;
@@ -13,6 +14,8 @@ public class CarouselHorrorScript : MonoBehaviour
     private CarouselEnemy enemy;
     [SerializeField]
     private TriggerScript actionCollider;
+    [SerializeField]
+    private Transform seatPosition;
 
     private float totalRotation = 0;
     private bool isStart;
@@ -35,17 +38,18 @@ public class CarouselHorrorScript : MonoBehaviour
     {
         if (isStart)
         {
-            if (actionCollider.IsTriggered)
+            float currentAngle = transform.rotation.eulerAngles.y;
+            if (Math.Abs(currentAngle) % 360 < 3)
             {
                 enemy.ChangePos();
             }
             if (Mathf.Abs(totalRotation) <= Mathf.Abs(RotatesCount * 360))
             {
-                float currentAngle = transform.rotation.eulerAngles.y;
+                
                 transform.rotation =
-                    Quaternion.AngleAxis(currentAngle + (Time.deltaTime * DegreesPerSecond), Vector3.up);
+                    Quaternion.AngleAxis(currentAngle - (Time.deltaTime * DegreesPerSecond), Vector3.up);
                 totalRotation += Time.deltaTime * DegreesPerSecond;
-                player.transform.position = MoveObject.position;
+                player.transform.position = seatPosition.position;
             }
             else
             {
@@ -60,8 +64,8 @@ public class CarouselHorrorScript : MonoBehaviour
         isStart = true;
         player.TurnOffMoves();
         horrorMove.StartMoves();
-        player.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
-        player.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Discrete;
+        //player.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
+        //player.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Discrete;
         enemy.gameObject.SetActive(true);
     }
 

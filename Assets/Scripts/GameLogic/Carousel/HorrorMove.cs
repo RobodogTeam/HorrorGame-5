@@ -38,13 +38,13 @@ public class CarouselHorrorMove : MonoBehaviour
         switch (pos)
         {
             case 0:
-                targetPos.z = startPos.z - 1.5f;
+                targetPos.z = startPos.z - 2f;
                 break;
             case 1:
                 targetPos.z = startPos.z;
                 break;
             case 2:
-                targetPos.z = startPos.z + 1.5f;
+                targetPos.z = startPos.z + 2f;
                 break;
         }
     }

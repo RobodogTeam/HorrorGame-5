@@ -3,11 +3,9 @@ using UnityEngine;
 public class ParkourHorrorScript : MonoBehaviour
 {
     [SerializeField]
-    private Transform deathPoint;
-    [SerializeField]
     private Transform startPoint;
     [SerializeField]
-    private TriggerScript deathtTigger, playTrigger;
+    private TriggerScript deathtTrigger, playTrigger;
     [SerializeField]
     private ParkourBlock[] parkourBlocks;
 
@@ -26,7 +24,7 @@ public class ParkourHorrorScript : MonoBehaviour
 
     private void Update()
     {
-        if (deathtTigger.IsTriggered)
+        if (deathtTrigger.IsTriggered)
         {
             player.SetRestartPoint(startPoint);
             player.Death();

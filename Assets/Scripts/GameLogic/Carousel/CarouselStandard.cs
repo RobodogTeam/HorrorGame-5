@@ -6,7 +6,6 @@ public class CarouselStandard : MonoBehaviour
     public int RotatesCount = 2;
     public float DegreesPerSecond = 45f;
     public float RotationDegreesAmount = 90f;
-    public Transform MoveObjectTransform;
 
     [SerializeField]
     private TriggerScript startCollider;

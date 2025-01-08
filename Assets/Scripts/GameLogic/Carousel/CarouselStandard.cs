@@ -8,15 +8,14 @@ public class CarouselStandard : MonoBehaviour
     public float RotationDegreesAmount = 90f;
     public Transform MoveObjectTransform;
 
+    [SerializeField]
+    private TriggerScript startCollider;
+    [SerializeField]
+    private Transform seatPosition;
+
     private float totalRotation = 0;
-    private TriggerScript actionCollider;
     private bool isStart;
     private Player player;
-
-    private void Awake()
-    {
-        actionCollider = GetComponentInChildren<TriggerScript>();
-    }
 
     private void Start()
     {
@@ -25,7 +24,7 @@ public class CarouselStandard : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (actionCollider.IsTriggered && Input.GetKeyDown(KeyCode.F))
+        if (startCollider.IsTriggered && Input.GetKeyDown(KeyCode.F))
         {
             StartGame();
         }
@@ -39,9 +38,9 @@ public class CarouselStandard : MonoBehaviour
             {
                 float currentAngle = transform.rotation.eulerAngles.y;
                 transform.rotation = 
-                    Quaternion.AngleAxis(currentAngle + (Time.deltaTime * DegreesPerSecond), Vector3.up);
+                    Quaternion.AngleAxis(currentAngle - (Time.deltaTime * DegreesPerSecond), Vector3.up);
                 totalRotation += Time.deltaTime * DegreesPerSecond;
-                player.transform.position = MoveObjectTransform.position;
+                player.transform.position = seatPosition.position;
             }
             else
             {
@@ -54,11 +53,15 @@ public class CarouselStandard : MonoBehaviour
     {
         isStart = true;
         player.TurnOffMoves();
+        Player.instance.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
+        Player.instance.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Discrete;
     }
 
     private void EndGame()
     {
         isStart = false;
         player.TurnOnMoves();
+        Player.instance.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
+        Player.instance.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
     }
 }

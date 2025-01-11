@@ -6,7 +6,8 @@ public class MetroStandardScript : MonoBehaviour
     private MinecartStandardScript minecart;
     [SerializeField]
     private TriggerScript trigger;
-    
+    [SerializeField]
+    private GameObject TaskGameObject;
 
     void Start()
     {
@@ -15,7 +16,7 @@ public class MetroStandardScript : MonoBehaviour
 
     void Update()
     {
-        if (trigger.IsTriggered && Input.GetKeyDown(KeyCode.F))
+        if (trigger.IsTriggered)
         {
             StartGame();
         }
@@ -34,5 +35,6 @@ public class MetroStandardScript : MonoBehaviour
         Player.instance.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
         Player.instance.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         Player.instance.transform.position = minecart.transform.position;
+        TaskGameObject.SetActive(false);
     }
 }

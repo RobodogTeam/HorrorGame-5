@@ -14,7 +14,6 @@ public class Wardrobe : MonoBehaviour
     {
         if (isOpening)
         {
-            Debug.Log(2);
             if (leftDoor.localRotation.eulerAngles.y < 123)
             {
                 float currentAngle = leftDoor.localRotation.eulerAngles.y;

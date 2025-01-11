@@ -11,6 +11,8 @@ public class CarouselStandard : MonoBehaviour
     private TriggerScript startCollider;
     [SerializeField]
     private Transform seatPosition;
+    [SerializeField]
+    private GameObject TaskGameObject;
 
     private float totalRotation = 0;
     private bool isStart;
@@ -23,7 +25,7 @@ public class CarouselStandard : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (startCollider.IsTriggered && Input.GetKeyDown(KeyCode.F))
+        if (startCollider.IsTriggered)
         {
             StartGame();
         }
@@ -62,5 +64,6 @@ public class CarouselStandard : MonoBehaviour
         player.TurnOnMoves();
         Player.instance.GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
         Player.instance.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        TaskGameObject.SetActive(false);
     }
 }

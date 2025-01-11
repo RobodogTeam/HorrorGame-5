@@ -5,12 +5,9 @@ public class LampHorror : MonoBehaviour
     private float onTime = 1, offTime = 0.5f;
     private float timer;
     private bool isOn;
-    private Light lightning;
 
-    private void Awake()
-    {
-        lightning = GetComponent<Light>();
-    }
+    [SerializeField]
+    private Light lightning;
 
     private void FixedUpdate()
     {

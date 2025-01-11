@@ -7,14 +7,10 @@ public class ArtLookingScript : MonoBehaviour
     private Texture image;
     [SerializeField]
     private RawImage uiImage;
-
+    [SerializeField]
     private TriggerScript trigger;
-    private bool isLookingThisArt;
 
-    void Start()
-    {
-        trigger = GetComponent<TriggerScript>();
-    }
+    private bool isLookingThisArt;
 
     private void FixedUpdate()
     {

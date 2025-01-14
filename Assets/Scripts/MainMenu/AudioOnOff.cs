@@ -8,13 +8,28 @@ public class AudioController : MonoBehaviour
     public GameObject buttonAudio;
 
     public Slider slider;
+    public float oldVolume;
 
     public AudioClip clip;
     public AudioSource audio;
 
+    public void Start()
+    {
+        oldVolume = slider.value;
+        if(!PlayerPrefs.HasKey("volume")) slider.value = 1;
+        if(!PlayerPrefs.HasKey("volume")) audio.volume = 1;
+    }
+
     void Update()  
     {
+        if(oldVolume != slider.value)
+        {
+            PlayerPrefs.SetFloat("volume", slider.value);
+            PlayerPrefs.Save();
+            oldVolume = slider.value;
+        }
         audio.volume = slider.value;
+        audio.volume = PlayerPrefs.GetFloat("volume");
     }
 
     public void OnOffAudio()

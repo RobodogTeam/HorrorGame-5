@@ -15,7 +15,6 @@ public class MazeMonster : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         player = Player.instance;
-        startPosition = transform;
     }
 
     void Update()

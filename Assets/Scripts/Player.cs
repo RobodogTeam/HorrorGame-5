@@ -16,18 +16,6 @@ public class Player : MonoBehaviour
         controller = GetComponent<FirstPersonController>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         if (isDeath)
@@ -58,13 +46,13 @@ public class Player : MonoBehaviour
             return;
 
         restartTimer = 0;
-        GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
-        GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
+        GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Discrete;
         transform.position = restartPoint.position;
         HP -= 1;
         Debug.Log($"Осталось хп: {HP}");
 
-        GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.None;
-        GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Discrete;
+        GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
+        GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
     }
 }
